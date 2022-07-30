@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
-import { Cadaster } from '../pages/Cadaster';
+import { Register } from '../pages/Register';
 import { Home } from '../pages/Home'
 import { Profile } from '../pages/Profile';
 import { Transaction } from '../pages/Transaction';
@@ -12,7 +12,7 @@ export const Router = () => (
   <Routes>
     <Route path="/" element={<Navigate to="/home" />} />
     <Route path="/home" element={ <Home /> } />
-    <Route path="/cadaster" element={ <Cadaster /> } />
+    <Route path="/register" element={ <Register /> } />
     <Route path="/profile" element={ <Profile /> } />
     <Route path="/transaction" element={ <Transaction /> } />
     <Route path="/transfer" element={ <Transfer /> } />
