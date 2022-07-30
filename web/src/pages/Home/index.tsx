@@ -14,19 +14,19 @@ export const Home = () => {
       </h2>
       <div className="flex flex-col items-center p-2.5 gap-5">
         <input
-          className="w-[250px] h-[33px] rounded-md"
+          className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
           type="text"
           placeholder="Digite seu CPF"
         />
         <input
-          className="w-[250px] h-[33px] rounded-md"
+          className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
           type="text"
           placeholder="Digite sua senha"
         />
         <button className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]">
           Entrar
         </button>
-        <p className="text-sm font-brand">Crie sua conta</p>
+        <p className="text-sm font-brand text-paragraph-dark">Crie sua conta</p>
       </div>
     </div>
   );
