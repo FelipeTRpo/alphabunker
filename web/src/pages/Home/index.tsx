@@ -1,6 +1,16 @@
+import { useState, useEffect } from 'react';
 import AlphaBunker from '../../assets/imgs/AlphaBunker.svg';
 
 export const Home = () => {
+
+  const [cpf, setCpf] = useState('');
+  const [password, setPassword] = useState('');
+
+  const buttonHandler = (event:React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    console.log(password, cpf)
+  }
+
   return (
     <div className="w-full h-full bg-body-light-200 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4">
@@ -17,13 +27,15 @@ export const Home = () => {
           className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
           type="text"
           placeholder="Digite seu CPF"
+          onChange={(e) => setCpf(e.target.value)}
         />
         <input
           className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
           type="text"
           placeholder="Digite sua senha"
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]">
+        <button onClick={buttonHandler} className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]">
           Entrar
         </button>
         <p className="text-sm font-brand text-paragraph-dark">Crie sua conta</p>
