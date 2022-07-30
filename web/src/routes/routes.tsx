@@ -1,7 +1,6 @@
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
-import { Register } from '../pages/Register';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Home } from '../pages/Home';
-import { Profile } from '../pages/Profile';
+import { Register } from '../pages/Register';
 
 import { Transaction } from '../pages/Transaction';
 import { Transfer } from '../pages/Transfer';
@@ -12,7 +11,6 @@ export const Router = () => (
     <Route path="/" element={<Navigate to="/home" />} />
     <Route path="/home" element={<Home />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/profile" element={<Profile />} />
     <Route path="/transaction" element={<Transaction />} />
     <Route path="/transfer" element={<Transfer />} />
     <Route path="/withdraw" element={<Withdraw />} />
