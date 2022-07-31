@@ -1,22 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlphaBunker from '../../assets/imgs/AlphaBunker.svg';
 import { login } from '../../components/utils/requisitions';
-import UserContext from '../../providers/account';
+import { useUser } from '../../providers/account';
 
 export const Login = () => {
   const navigate = useNavigate();
 
-  const {state, setState} = useContext(UserContext)
+  const { setState, state } = useUser();
+
   const [cpf, setCpf] = useState('');
   const [] = useState('');
-
-  const handlerLogin = async () => { 
-    const reponse = await login(cpf)
-    if(reponse.name === "AxiosError") return 
-    setNewAccount(reponse)
-    navigate("/home")
-  }
 
   const setNewAccount = (obj: any) => {
     setState({
@@ -25,10 +19,16 @@ export const Login = () => {
       acct_number_dv: obj.acct_number_dv,
       agency: obj.agency,
       agency_dv: obj.agency_dv
-    }
-    )
+    })
   }
-  
+
+  const handlerLogin = async () => {
+    const reponse = await login(cpf)
+    if (reponse.name === "AxiosError") return
+    setNewAccount(reponse)
+    sessionStorage.setItem("cpf_account", cpf)
+  }
+
   return (
     <div className="w-full h-full bg-body-light-200 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4">

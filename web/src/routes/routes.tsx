@@ -1,5 +1,6 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { login } from '../components/utils/requisitions';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
@@ -7,16 +8,36 @@ import { Register } from '../pages/Register';
 import { Transaction } from '../pages/Transaction';
 import { Transfer } from '../pages/Transfer';
 import { Withdraw } from '../pages/Withdraw';
-import UserContext from '../providers/account';
+import { useUser } from '../providers/account';
 
 interface PrivateTypes {
   children: ReactElement;
 }
 
 const Private = ({ children }: PrivateTypes) => {
-  const { state } = useContext(UserContext);
+  const {state, setState} = useUser();
 
   if (state.id === "") {
+    const cpf = sessionStorage.getItem("cpf_account");
+    if(cpf != undefined) {
+      const setNewAccount = (obj: any) => {
+        setState({
+          id: obj.id,
+          acct_number: obj.acct_number,
+          acct_number_dv: obj.acct_number_dv,
+          agency: obj.agency,
+          agency_dv: obj.agency_dv
+        })
+      }
+    
+      const handlerLogin = async () => {
+        const reponse = await login(cpf)
+        if (reponse.name === "AxiosError") return;
+        setNewAccount(reponse)
+        sessionStorage.setItem("cpf_account", cpf)
+      }
+      handlerLogin();
+    }
     return <Navigate to="/login" />;
   }
 
@@ -24,7 +45,7 @@ const Private = ({ children }: PrivateTypes) => {
 };
 
 const Public = ({ children }: PrivateTypes) => {
-  const { state } = useContext(UserContext);
+  const state = useUser().state;
 
   if (state.id != "") {
     return <Navigate to="/home" />;

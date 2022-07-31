@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import UserContext from "../../providers/account";
+import {useUser} from "../../providers/account";
 
 export const Home = () => {
   async function handleHome() { /*TODO*/ }
-  const {state, setState} = useContext(UserContext)
+  const state = useUser().state
   
   const apagar = () => {
     console.log(state)

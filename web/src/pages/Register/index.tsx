@@ -1,19 +1,30 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlphaBunker from '../../assets/imgs/AlphaBunker.svg';
 import { createAccount } from '../../components/utils/requisitions';
-import UserContext from '../../providers/account';
+import { useUser } from '../../providers/account';
 import { Input_User } from './verification_input';
 
 export const Register = () => {
   const navigate = useNavigate();
 
-  const {state, setState} = useContext(UserContext)
+  const {setState} = useUser();
+
   const [name, setName] = useState('');
   const [birth_date, setBirthDate] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
 
+  const setNewAccount = (obj: any) => {
+    setState({
+        id: obj.id,
+        acct_number: obj.acct_number,
+        acct_number_dv: obj.acct_number_dv,
+        agency: obj.agency,
+        agency_dv: obj.agency_dv
+    }
+    )
+}
 
   const handleRegister = async () => {
     const hasError = new Input_User(name, birth_date, cpf, email).hasIntegrity();
@@ -23,17 +34,6 @@ export const Register = () => {
     console.log(response)
     setNewAccount(response)
     navigate("/home")
-  }
-
-  const setNewAccount = (obj: any) => {
-    setState({
-      id: obj.id,
-      acct_number: obj.acct_number,
-      acct_number_dv: obj.acct_number_dv,
-      agency: obj.agency,
-      agency_dv: obj.agency_dv
-    }
-    )
   }
 
   return (

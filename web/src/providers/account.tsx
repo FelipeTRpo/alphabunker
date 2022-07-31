@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 type UserType = {
     id: string;
@@ -44,5 +44,6 @@ const UserContextProvider = ({ children }: AccountProviderTypes) => {
         </UserContext.Provider>
     );
 };
+
 export { UserContextProvider };
-export default UserContext;
+export const useUser = () => useContext(UserContext);
