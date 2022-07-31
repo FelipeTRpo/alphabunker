@@ -10,7 +10,7 @@ class AccountSql extends Connection {
 
     public async createAccount() {
         const query = `INSERT INTO accounts(owner, agency, agency_dv, acct_number, acct_number_dv, balance)
-            VALUES('${this.data.owner}', '${this.data.agency}', '${this.data.agency_dv}', '${this.data.acct_number}', '${this.data.acct_number_dv}', '0') RETURNING agency, agency_dv, acct_number, acct_number_dv`;
+            VALUES('${this.data.owner}', '${this.data.agency}', '${this.data.agency_dv}', '${this.data.acct_number}', '${this.data.acct_number_dv}', '0') RETURNING id, agency, agency_dv, acct_number, acct_number_dv`;
             return (await this.db.query(query)).rows[0]
     }
 
