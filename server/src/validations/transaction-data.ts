@@ -9,7 +9,6 @@ class TransactionValidate {
 
     public containErrors(): void|string{
         this.numbers();
-        console.log(this.errors)
         if(this.errors.length !== 0) return this.joinError();
     }
 

@@ -24,7 +24,6 @@ class AccountInsertService {
             return res
         }
         catch(err){
-            console.log(err)
             throw {
                 code: 400,
                 msg: err
@@ -35,7 +34,6 @@ class AccountInsertService {
 
     private validation(): void|string{
         const clientHasError = new ClientValidate(this.client as Client).containError();
-        console.log(clientHasError);
         if(clientHasError) return clientHasError;
     }
 

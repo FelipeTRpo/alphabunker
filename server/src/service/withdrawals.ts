@@ -1,7 +1,7 @@
 import Account from "../models/account";
 import Transaction from "../models/transaction";
 import WithdrawalsSql from "../repository/withdrawals";
-import AccountGetService from "./account/account-get";
+import {AccountGetService} from "./account/account-get";
 import TransactionService from "./transaction";
 import { resError, resSuccess } from "../models/response";
 

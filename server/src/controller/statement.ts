@@ -9,8 +9,8 @@ class Statement {
     public async handle(req: Request, res: Response) {
         try{
             const response = await new StatementService(req.body).create()
-            res.status(res.statusCode)
-            res.send(response.data)
+            res.status(res.statusCode);
+            res.send(response.data);
         }
         catch(err){
             const _resError: resError = err as resError;

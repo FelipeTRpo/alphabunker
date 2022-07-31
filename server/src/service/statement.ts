@@ -1,11 +1,9 @@
 import Account from "../models/account";
 import { resError, resSuccess } from "../models/response";
-import Transaction from "../models/transaction";
-import DepositSql from "../repository/deposit";
 import StatementSql from "../repository/statement";
 import AccountValidate from "../validations/account-data";
-import AccountGetService from "./account/account-get";
-import TransactionService from "./transaction";
+import {AccountGetService} from "./account/account-get";
+
 
 
 class StatementService {
@@ -21,7 +19,6 @@ class StatementService {
             await this.parse();
             this.verificationAccount();
             const res = await new StatementSql(this.account as Account).get();
-            console.log(res)
             return { code: 200, data: res} as resSuccess;
         }
         catch(err){
@@ -46,7 +43,6 @@ class StatementService {
             "acct_number_dv": this.data.acct_number_dv
         } as Account;
         this.account.id = await new AccountGetService(this.account).getIdAccount();
-        console.log(this.account)
     }
     
 }

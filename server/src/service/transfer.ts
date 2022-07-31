@@ -2,7 +2,7 @@ import Account from "../models/account";
 import { resError, resSuccess } from "../models/response";
 import Transaction from "../models/transaction";
 import TransferSql from "../repository/transfer";
-import AccountGetService from "./account/account-get";
+import {AccountGetService} from "./account/account-get";
 import TransactionService from "./transaction";
 
 
@@ -19,7 +19,6 @@ class TransferService extends TransactionService {
             await this.parseTransaction();
             this.verificationTransaction();
             const res = await new TransferSql(this.transaction as Transaction).transfer();
-            console.log(this.transaction);
             return { code: 200, data: res} as resSuccess;
         }
         catch(err){

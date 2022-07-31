@@ -21,9 +21,18 @@ class AccountSql extends Connection {
         if(response) return response.id;
     }
 
+    public async getAllFieldsWithCpf(cpf:string): Promise<any> {
+        let cpfTemp = cpf;
+        cpfTemp = cpfTemp.replaceAll(".", "");
+        cpfTemp = cpfTemp.replace("-", "");
+        
+        const idClient = (await this.db.query(`SELECT id FROM clients WHERE cpf='${cpfTemp}'`)).rows[0];
+        if(idClient === undefined) throw "CPF inexists";
+        return (await this.db.query(`SELECT "id", "owner", "agency", "agency_dv", "acct_number", "acct_number_dv" FROM accounts WHERE owner='${idClient.id}'`)).rows[0];
+    }
+
     public async getBalance(id: string): Promise<string>{
         const balance =  (await this.db.query(`SELECT balance FROM accounts WHERE id='${id}'`)).rows[0].balance;
-        console.log(balance)
         return balance;
     }
 }

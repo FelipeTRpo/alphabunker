@@ -2,7 +2,7 @@ import Account from "../models/account";
 import { resError, resSuccess } from "../models/response";
 import Transaction from "../models/transaction";
 import DepositSql from "../repository/deposit";
-import AccountGetService from "./account/account-get";
+import { AccountGetService } from "./account/account-get";
 import TransactionService from "./transaction";
 
 
@@ -19,7 +19,6 @@ class DepositService extends TransactionService {
             await this.parseTransaction();
             this.verificationTransaction();
             const res = await new DepositSql(this.transaction as Transaction).deposit();
-            console.log(this.transaction);
             return { code: 200, data: res} as resSuccess;
         }
         catch(err){
