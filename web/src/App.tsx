@@ -1,5 +1,5 @@
 import './styles/global.css';
-import { Home } from './pages/Home/index';
+import { Home } from './pages/Login/index';
 import { Router } from './routes/routes';
 import { BrowserRouter } from 'react-router-dom';
 import { UserContextProvider } from './providers/account'

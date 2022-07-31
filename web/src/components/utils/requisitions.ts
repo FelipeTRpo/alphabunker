@@ -10,12 +10,13 @@ export async function login(cpf:string) {
     }    
 }
 
-export async function createAccount(cpf: string, email: string, birth_date: Date) {
+export async function createAccount(cpf: string, email: string, birth_date: string, name:string) {
     try {
         const result = (await api.post("/account", {
             cpf, 
             email, 
-            birth_date
+            birth_date,
+            name
         }))
         if(result.status !== 201) throw "in route: account"
 
