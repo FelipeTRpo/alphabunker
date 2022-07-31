@@ -1,16 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import AlphaBunker from '../../assets/imgs/AlphaBunker.svg';
+import { login } from '../../components/utils/requisitions';
+import UserContext from '../../providers/account';
 
 export const Home = () => {
 
+  const {setState, state} = useContext(UserContext)
   const [cpf, setCpf] = useState('');
-  const [password, setPassword] = useState('');
-
-  const buttonHandler = (event:React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    console.log(password, cpf)
+  const [] = useState('');
+  const buttonHandler = async () => { 
+    const reponse = await login(cpf)
+    if(reponse.name === "AxiosError") return 
+    setNewAccount(reponse)
   }
 
+  const setNewAccount = (obj: any) => {
+    setState({
+      id: obj.id,
+      acct_number: obj.acct_number,
+      acct_number_dv: obj.acct_number_dv,
+      agency: obj.agency,
+      agency_dv: obj.agency_dv
+    }
+    )
+  }
+  function test() {
+    console.log(state)
+  }
+  
   return (
     <div className="w-full h-full bg-body-light-200 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4">
@@ -31,14 +48,13 @@ export const Home = () => {
         />
         <input
           className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
-          type="text"
+          type="password"
           placeholder="Digite sua senha"
-          onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={buttonHandler} className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]">
           Entrar
         </button>
-        <p className="text-sm font-brand text-paragraph-dark">Crie sua conta</p>
+        <p className="text-sm font-brand text-paragraph-dark" onClick={test}>Crie sua conta</p>
       </div>
     </div>
   );
