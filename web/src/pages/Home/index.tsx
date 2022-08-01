@@ -1,4 +1,5 @@
 import {useUser} from "../../providers/account";
+import { Navbar } from "./Navbar";
 
 export const Home = () => {
   async function handleHome() { /*TODO*/ }
@@ -9,7 +10,8 @@ export const Home = () => {
   }
   return (
     <>
-      <h1 onClick={apagar} style={{color: "red"}}>ROUTE Home</h1>
+      <Navbar name='Felipe Bueno'/>
+      <h1 onClick={apagar} >ROUTE Home</h1>
     </>
   );
 };

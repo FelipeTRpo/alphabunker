@@ -67,9 +67,9 @@ export const Router = () => (
     </Public>
     } />
     <Route path="/home" element={
-    <Private>
+    // <Private>
       <Home />
-    </Private>
+    // </Private>
     } />
     <Route path="/transaction" element={
     <Private>
