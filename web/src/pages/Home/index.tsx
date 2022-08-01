@@ -1,5 +1,6 @@
 import {useUser} from "../../providers/account";
 import { Navbar } from "./Navbar";
+import { Extractcomp } from "../Extract/Extractcomp";
 
 export const Home = () => {
   async function handleHome() { /*TODO*/ }
@@ -10,8 +11,8 @@ export const Home = () => {
   }
   return (
     <>
-      <Navbar name='Felipe Bueno'/>
-      <h1 onClick={apagar} >ROUTE Home</h1>
+      <Navbar name='Felipe Bueno' agency = '9483-4' account='15499-5' money= {String(12345678.12)}/>
+      <Extractcomp />
     </>
   );
 };

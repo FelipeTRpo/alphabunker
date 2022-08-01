@@ -72,14 +72,14 @@ export const Router = () => (
     // </Private>
     } />
     <Route path="/transaction" element={
-    <Private>
+    // <Private>
       <Transaction />
-    </Private>
+    // </Private>
     } />
     <Route path="/transfer" element={
-    <Private>
+    // <Private>
       <Transfer />
-    </Private>
+    // </Private>
     } />
     <Route path="/withdraw" element={
     <Private>
