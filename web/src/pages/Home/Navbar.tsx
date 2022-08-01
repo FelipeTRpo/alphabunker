@@ -19,10 +19,10 @@ export const Navbar = (props:NavbarProps) => {
             <div className='flex justify-between'><h2>Bem vindo, {props.name} </h2> <img src={userprofilebtn} alt="" /></div>
         <nav>
             <ul className='flex gap-2 px-2 text-xs'>
-                <li className='flex flex-col justify-center items-center'><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><figure><img src={extractbtn} alt="" /></figure></button><p>Extrato</p></li>
-                <li className='flex flex-col justify-center items-center'><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={transferbtn} alt="" /></button><p>Transferir</p></li>
-                <li className='flex flex-col justify-center items-center'><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={depositbtn} alt="" /></button><p>Depositar</p></li>
-                <li className='flex flex-col justify-center items-center'><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={withdrawbtn} alt="" /></button><p>Sacar</p></li>    
+                <li ><a className='flex flex-col justify-center items-center' href="/home"><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><figure><img src={extractbtn} alt="" /></figure></button><p>Extrato</p></a></li>
+                <li ><a className='flex flex-col justify-center items-center' href="/transaction"><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={transferbtn} alt="" /></button><p>Transferir</p></a></li>
+                <li ><a className='flex flex-col justify-center items-center' href="/transfer"><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={depositbtn} alt="" /></button><p>Depositar</p></a></li>
+                <li ><a className='flex flex-col justify-center items-center' href="/withdraw"><button className='w-14 h-12 bg-brand-btn flex flex-col justify-center items-center rounded-md'><img src={withdrawbtn} alt="" /></button><p>Sacar</p></a></li>    
             </ul>
         </nav>
         <div className='bg-white rounded-2xl bg-white mx-auto my-0 px-4 py-3 pt-1.5 w-10/12 absolute -bottom-8 left-1/2 -translate-x-1/2 shadow-md flex flex-col items-start justify-between'>

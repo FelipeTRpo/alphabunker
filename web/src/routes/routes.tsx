@@ -82,9 +82,9 @@ export const Router = () => (
     // </Private>
     } />
     <Route path="/withdraw" element={
-    <Private>
+    // <Private>
       <Withdraw />
-    </Private>
+    // </Private>
     } />
   </Routes>
 );
