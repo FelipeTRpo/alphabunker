@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 type UserType = {
+    name: string;
     id: string;
     agency: string;
     agency_dv: string;
@@ -19,6 +20,7 @@ type AccountProviderTypes = {
 
 const DEFAULT_VALUE = {
     state: {
+        name: "",
         id: "",
         agency: "",
         agency_dv: "",

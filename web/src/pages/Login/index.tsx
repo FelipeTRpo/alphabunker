@@ -14,6 +14,7 @@ export const Login = () => {
 
   const setNewAccount = (obj: any) => {
     setState({
+      name: obj.name,
       id: obj.id,
       acct_number: obj.acct_number,
       acct_number_dv: obj.acct_number_dv,
