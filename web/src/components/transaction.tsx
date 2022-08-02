@@ -1,48 +1,166 @@
 import header from '../assets/imgs/header.svg';
-
-export const ProofOfPurchase = () => {
-  return (
-    <div className="flex flex-col justify-center items-center h-full ">
-      <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
-        <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
-          <img className="" src={header} alt="" />
-        </h1>
-        <div className="w-[250px] h-[191px] rounded p-1 mt-3 bg-body-light-100 flex flex-col justify-around">
-          <div className="flex flex-col">
-            <h2 className="text-xs font-medium font-brand  text-input-placeholder">
-              Tipo: Transferência - Enviada
-            </h2>
-            <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
-              Data: 03/07/2022 20:45
-            </span>
-          </div>
-          <div>
-            <h3 className="text-xs font-medium font-brand  text-input-placeholder">
-              Dados de destino:
-            </h3>
+type ProofProps ={
+    transactionType: string,
+    datetime: string,
+    name: string,
+    agency: string,
+    account: string,
+    value: string,
+}
+export const ProofOfPurchase = (props:ProofProps) => {
+  if (props.transactionType === 'Transferência enviada') {
+    return (
+      <div className="flex flex-col justify-center items-center h-full ">
+        <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
+          <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
+            <img className="" src={header} alt="" />
+          </h1>
+          <div className="w-[250px] h-[191px] rounded p-1 mt-3 bg-body-light-100 flex flex-col justify-around">
             <div className="flex flex-col">
-              <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
-                Nome: Dhalsim Fonseca
+              <h2 className="text-xs font-medium font-brand  text-input-placeholder">
+                Tipo: Transferência - Enviada
+              </h2>
+              <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
+                Data: {props.datetime}
               </span>
-              <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
-                Agência: 1027-7
+            </div>
+            <div>
+              <h3 className="text-xs font-medium font-brand  text-input-placeholder">
+                Dados de destino:
+              </h3>
+              <div className="flex flex-col">
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Nome: {props.name}
+                </span>
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Agência: {props.agency}
+                </span>
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Conta: {props.account}
+                </span>
+              </div>
+            </div>
+  
+            <div className="flex justify-between w-full">
+              <span className="text-base font-medium font-brand  text-input-placeholder">
+                Valor
               </span>
-              <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
-                Conta: 93459-2
+              <span className="text-base font-medium font-brand  text-input-error">
+                {props.value}
               </span>
             </div>
           </div>
+        </div>
+      </div>
+    );
+  }
 
-          <div className="flex justify-between w-full">
-            <span className="text-base font-medium font-brand  text-input-placeholder">
-              Valor
-            </span>
-            <span className="text-base font-medium font-brand  text-input-placeholder">
-              21,2
-            </span>
+  if (props.transactionType === 'Saque') {
+    return (
+      <div className="flex flex-col justify-center items-center h-full ">
+        <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
+          <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
+            <img className="" src={header} alt="" />
+          </h1>
+          <div className="w-[250px] h-[191px] rounded p-1 mt-3 bg-body-light-100 flex flex-col justify-around">
+            <div className="flex flex-col">
+              <h2 className="text-xs font-medium font-brand  text-input-placeholder">
+                Tipo: Saque
+              </h2>
+              <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
+                Data: {props.datetime}
+              </span>
+            </div>
+  
+            <div className="flex justify-between w-full">
+              <span className="text-base font-medium font-brand  text-input-placeholder">
+                Valor
+              </span>
+              <span className="text-base font-medium font-brand  text-input-error">
+                {props.value}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
+  if (props.transactionType === 'Depósito') {
+    return (
+      <div className="flex flex-col justify-center items-center h-full ">
+        <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
+          <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
+            <img className="" src={header} alt="" />
+          </h1>
+          <div className="w-[250px] h-[191px] rounded p-1 mt-3 bg-body-light-100 flex flex-col justify-around">
+            <div className="flex flex-col">
+              <h2 className="text-xs font-medium font-brand  text-input-placeholder">
+                Tipo: Depósito
+              </h2>
+              <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
+                Data: {props.datetime}
+              </span>
+            </div>
+  
+            <div className="flex justify-between w-full">
+              <span className="text-base font-medium font-brand  text-input-placeholder">
+                Valor
+              </span>
+              <span className="text-base font-medium font-brand  text-[#53D496]">
+                {props.value}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (props.transactionType === 'Transferência recebida') {
+    return (
+      <div className="flex flex-col justify-center items-center h-full ">
+        <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
+          <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
+            <img className="" src={header} alt="" />
+          </h1>
+          <div className="w-[250px] h-[191px] rounded p-1 mt-3 bg-body-light-100 flex flex-col justify-around">
+            <div className="flex flex-col">
+              <h2 className="text-xs font-medium font-brand  text-input-placeholder">
+                Tipo: Transferência - Recebida
+              </h2>
+              <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
+                Data: {props.datetime}
+              </span>
+            </div>
+            <div>
+              <h3 className="text-xs font-medium font-brand  text-input-placeholder">
+                Dados de origem:
+              </h3>
+              <div className="flex flex-col">
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Nome:{props.name}
+                </span>
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Agência:{props.agency}
+                </span>
+                <span className=" text-[#A2A2A2] font-brand  text-sm ml-1">
+                  Conta: {props.account}
+                </span>
+              </div>
+            </div>
+  
+            <div className="flex justify-between w-full">
+              <span className="text-base font-medium font-brand  text-input-placeholder">
+                Valor
+              </span>
+              <span className="text-base font-medium font-brand  text-input-error">
+                {props.value}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
