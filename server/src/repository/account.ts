@@ -26,9 +26,11 @@ class AccountSql extends Connection {
         cpfTemp = cpfTemp.replaceAll(".", "");
         cpfTemp = cpfTemp.replace("-", "");
         
-        const idClient = (await this.db.query(`SELECT id FROM clients WHERE cpf='${cpfTemp}'`)).rows[0];
-        if(idClient === undefined) throw "CPF inexists";
-        return (await this.db.query(`SELECT "id", "owner", "agency", "agency_dv", "acct_number", "acct_number_dv" FROM accounts WHERE owner='${idClient.id}'`)).rows[0];
+        const resultClient = (await this.db.query(`SELECT name, id FROM clients WHERE cpf='${cpfTemp}'`)).rows[0];
+        if(resultClient === undefined) throw "CPF inexists";
+        const result = (await this.db.query(`SELECT "id", "owner", "agency", "agency_dv", "acct_number", "acct_number_dv" FROM accounts WHERE owner='${resultClient.id}'`)).rows[0]
+        result.name = resultClient.name
+        return result;
     }
 
     public async getBalance(id: string): Promise<string>{

@@ -1,25 +1,31 @@
-import { useUser } from '../../providers/account';
-import { Navbar } from './Navbar';
-import { Extractcomp } from '../Extract/Extractcomp';
+import { useUser } from "../../providers/account";
+import { Navbar } from "./Navbar";
+import { Extractcomp } from "../../components/Extractcomp";
+import { getStatement } from "../../components/utils/requisitions";
+import { useEffect, useState } from "react";
+
 
 export const Home = () => {
-  async function handleHome() {
-    /*TODO*/
-  }
-  const state = useUser().state;
+  const state = useUser().state
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([] as any);
 
-  const apagar = () => {
-    console.log(state);
-  };
-  return (
-    <>
-      <Navbar
-        name="Felipe Bueno"
-        agency="9483-4"
-        account="15499-5"
-        money={String(12345678.12)}
-      />
-      <Extractcomp />
-    </>
-  );
+  useEffect(() => {
+    getStatement(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv)
+      .then(res => {
+        setIsLoaded(true);
+        setItems(res);
+      })
+  }, [])
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else{
+    return (
+      <>
+        <Navbar money={items.balance} />
+        <Extractcomp obj={items}/>
+      </>
+    );
+  }
 };

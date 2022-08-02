@@ -1,43 +1,61 @@
 import { api } from "../../libs/api";
 
-export async function login(cpf:string) {
+export async function login(cpf: string) {
     try {
         const result = (await api.get(`/get-fields/${cpf}`))
-        if(result.status !== 200) throw "in route: account"
+        if (result.status !== 200) throw "in route: account"
         return result.data
-    }catch(e) {
-        return e
-    }    
-}
-
-export async function createAccount(cpf: string, email: string, birth_date: string, name:string) {
-    try {
-        const result = (await api.post("/account", {
-            cpf, 
-            email, 
-            birth_date,
-            name
-        }))
-        if(result.status !== 201) throw "in route: account"
-
-        return result.data
-    }catch(e) {
+    } catch (e) {
         return e
     }
 }
 
-export async function createStatement(agency: number, agency_dv: number, acct_number: number, acct_dv: number) {
+export async function createAccount(cpf: string, email: string, birth_date: string, name: string) {
     try {
-        const result = (await api.post("/statement", {
-            agency, 
-            agency_dv,
-            acct_number,
-            acct_dv
+        const result = (await api.post("/account", {
+            cpf,
+            email,
+            birth_date,
+            name
         }))
-        if(result.status !== 201) throw "in route: statement"
+        if (result.status !== 201) throw "in route: account"
 
         return result.data
-    }catch(e) {
+    } catch (e) {
+        return e
+    }
+}
+
+export async function getStatement(agency: string, agency_dv: string, acct_number: string, acct_number_dv: string) {
+    try {
+        const result = (await api.post("/statement", {
+            agency,
+            agency_dv,
+            acct_number,
+            acct_number_dv
+        }))
+        if (result.status !== 200) throw "error in route: statement"
+
+        return result.data
+    } catch (e) {
+        return e
+    }
+}
+
+export async function createTransfer(agency: string, agency_dv: string, acct_number: string, acct_number_dv: string, value: string, id: string) {
+    try {
+        const result = (await api.post("/transfer", {
+            agency,
+            agency_dv,
+            acct_number,
+            acct_number_dv,
+            value,
+            id
+        }))
+        if (result.status !== 200) throw "error in route: transfer"
+
+        return result.data
+    } catch (e) {
         return e
     }
 }

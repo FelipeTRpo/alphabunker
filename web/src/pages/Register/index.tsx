@@ -17,13 +17,15 @@ export const Register = () => {
 
   const setNewAccount = (obj: any) => {
     setState({
-      id: obj.id,
-      acct_number: obj.acct_number,
-      acct_number_dv: obj.acct_number_dv,
-      agency: obj.agency,
-      agency_dv: obj.agency_dv,
-    });
-  };
+        name: name,
+        id: obj.id,
+        acct_number: obj.acct_number,
+        acct_number_dv: obj.acct_number_dv,
+        agency: obj.agency,
+        agency_dv: obj.agency_dv
+    }
+    )
+}
 
   const handleRegister = async () => {
     const hasError = new Input_User(
