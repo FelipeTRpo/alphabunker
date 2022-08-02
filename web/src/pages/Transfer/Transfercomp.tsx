@@ -34,7 +34,7 @@ export const Transfercomp = () => {
           placeholder="Valor"
         />
         <input
-          className="placeholder:text-input-placeholder text-input-text border border-input-border bg-input-base text-base font-regular px-2 py-1 rounded w-full mt-4"
+          className="placeholder:text-input-placeholder text-input-text border border-input-border bg-input-base text-base px-2 py-1 rounded w-full mt-4"
           type="text"
           placeholder="Senha"
         />
