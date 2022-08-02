@@ -8,7 +8,7 @@ import { Input_User } from './verification_input';
 export const Register = () => {
   const navigate = useNavigate();
 
-  const {setState} = useUser();
+  const { setState } = useUser();
 
   const [name, setName] = useState('');
   const [birth_date, setBirthDate] = useState('');
@@ -17,24 +17,28 @@ export const Register = () => {
 
   const setNewAccount = (obj: any) => {
     setState({
-        id: obj.id,
-        acct_number: obj.acct_number,
-        acct_number_dv: obj.acct_number_dv,
-        agency: obj.agency,
-        agency_dv: obj.agency_dv
-    }
-    )
-}
+      id: obj.id,
+      acct_number: obj.acct_number,
+      acct_number_dv: obj.acct_number_dv,
+      agency: obj.agency,
+      agency_dv: obj.agency_dv,
+    });
+  };
 
   const handleRegister = async () => {
-    const hasError = new Input_User(name, birth_date, cpf, email).hasIntegrity();
-    if(hasError.length !== 0) return alert(...hasError);
+    const hasError = new Input_User(
+      name,
+      birth_date,
+      cpf,
+      email,
+    ).hasIntegrity();
+    if (hasError.length !== 0) return alert(...hasError);
     const response = await createAccount(cpf, email, birth_date, name);
-    if(response.name === "AxiosError") return 
-    console.log(response)
-    setNewAccount(response)
-    navigate("/home")
-  }
+    if (response.name === 'AxiosError') return;
+    console.log(response);
+    setNewAccount(response);
+    navigate('/home');
+  };
 
   return (
     <div className="w-full h-full bg-body-light-200 flex flex-col items-center justify-center">
@@ -83,10 +87,18 @@ export const Register = () => {
           placeholder="Confirme sua senha"
         />
       </div>
-      <button className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px] mt-6" onClick={handleRegister}>
+      <button
+        className="bg-brand-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px] mt-6"
+        onClick={handleRegister}
+      >
         Cadastrar
       </button>
-      <p className="text-sm font-brand text-paragraph-dark" onClick={() => navigate("/login", { replace: true })}>Entrar</p>
+      <p
+        className="text-sm font-brand text-paragraph-dark"
+        onClick={() => navigate('/login', { replace: true })}
+      >
+        Entrar
+      </p>
     </div>
   );
 };

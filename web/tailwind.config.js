@@ -10,7 +10,7 @@ module.exports = {
         brand: {
           base: '#338896',
           hover: '#3FA7B8',
-          btn:'#75ACB1'
+          btn: '#75ACB1',
         },
         body: {
           light: {
