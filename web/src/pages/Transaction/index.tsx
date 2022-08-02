@@ -3,7 +3,7 @@ import { getStatement } from "../../components/utils/requisitions";
 import { useUser } from "../../providers/account";
 import { Navbar } from "../Home/Navbar"
 import { Transactioncomp } from "./Transactioncomp";
-import { Modalconfirmation } from "../../components/Modalconfirmation";
+
 
 export const Transaction = () => {
   const state = useUser().state
@@ -25,7 +25,6 @@ export const Transaction = () => {
       <>
         <Navbar money={items.balance} />
         <Transactioncomp />
-        <Modalconfirmation />
       </>
     );
   }
