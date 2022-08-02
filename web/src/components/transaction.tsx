@@ -1,14 +1,18 @@
+/*
+<ProofOfPurchase transactionType={ /Tipo da transaçaoo /} datetime = {/Data e hora da transaçao / } name = {/Nome que será mostrado, na transferencia enviada o destinatario e transferencia recebida quem recebeu / } agency = {/igual o nome, só q agencia / } account = {/igual o nome, só q account / } value = {/o valor q vai ser mostrado / } />
+*/
+
 import header from '../assets/imgs/header.svg';
-type ProofProps ={
-    transactionType: string,
-    datetime: string,
-    name: string,
-    agency: string,
-    account: string,
-    value: string,
+type ProofProps = {
+  transactionType: string,
+  datetime: string,
+  name: string,
+  agency: string,
+  account: string,
+  value: string,
 }
-export const ProofOfPurchase = (props:ProofProps) => {
-  if (props.transactionType === 'Transferência enviada') {
+export const ProofOfPurchase = (props: ProofProps) => {
+  if (props.transactionType === 'TRANSFER') {
     return (
       <div className="flex flex-col justify-center items-center h-full ">
         <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
@@ -40,7 +44,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
                 </span>
               </div>
             </div>
-  
+
             <div className="flex justify-between w-full">
               <span className="text-base font-medium font-brand  text-input-placeholder">
                 Valor
@@ -55,7 +59,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
     );
   }
 
-  if (props.transactionType === 'Saque') {
+  if (props.transactionType === 'WITHDRAWALS') {
     return (
       <div className="flex flex-col justify-center items-center h-full ">
         <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
@@ -71,7 +75,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
                 Data: {props.datetime}
               </span>
             </div>
-  
+
             <div className="flex justify-between w-full">
               <span className="text-base font-medium font-brand  text-input-placeholder">
                 Valor
@@ -85,8 +89,8 @@ export const ProofOfPurchase = (props:ProofProps) => {
       </div>
     );
   }
-  
-  if (props.transactionType === 'Depósito') {
+
+  if (props.transactionType === 'DEPOSIT') {
     return (
       <div className="flex flex-col justify-center items-center h-full ">
         <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
@@ -102,7 +106,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
                 Data: {props.datetime}
               </span>
             </div>
-  
+
             <div className="flex justify-between w-full">
               <span className="text-base font-medium font-brand  text-input-placeholder">
                 Valor
@@ -117,7 +121,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
     );
   }
 
-  if (props.transactionType === 'Transferência recebida') {
+  if (props.transactionType === 'TRANSFER_TO') {
     return (
       <div className="flex flex-col justify-center items-center h-full ">
         <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
@@ -149,7 +153,7 @@ export const ProofOfPurchase = (props:ProofProps) => {
                 </span>
               </div>
             </div>
-  
+
             <div className="flex justify-between w-full">
               <span className="text-base font-medium font-brand  text-input-placeholder">
                 Valor
@@ -163,4 +167,5 @@ export const ProofOfPurchase = (props:ProofProps) => {
       </div>
     );
   }
+  return <></>
 };

@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { login } from '../components/utils/requisitions';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
+import { Proof } from '../pages/Proof';
 import { Register } from '../pages/Register';
 
 import { Transaction } from '../pages/Transaction';
@@ -105,6 +106,14 @@ export const Router = () => (
       element={
         <Private>
           <Withdraw />
+        </Private>
+      }
+    />
+    <Route
+      path="/proof"
+      element={
+        <Private>
+          <Proof />
         </Private>
       }
     />

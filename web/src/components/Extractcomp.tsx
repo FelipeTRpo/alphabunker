@@ -1,5 +1,9 @@
+import { createContext, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import bellicon from '../assets/imgs/bellicon.svg';
 import extractgold from '../assets/imgs/extractgold.svg';
+import { useTransaction } from '../providers/transaction';
+import { getStatementByID } from './utils/requisitions';
 
 const classExtractUnit = 'flex justify-between';
 
@@ -28,7 +32,25 @@ const nameTransaction: any = {
   "WITHDRAWALS": "Saque"
 }
 
+
 export const Extractcomp = (_obj: ExtractProps) => {
+  const navigate = useNavigate();
+  const setState = useTransaction().setState;
+  const get_details = async(id: string) => {
+    const response = await getStatementByID(id);
+    setState({
+      "id": response.id,
+      "date_time": response.date_time,
+      "value": response.value,
+      "total": response.total,
+      "name": response.name,
+      "destinatary_agency": response["destinatary_agency"],
+      "destinatary_agency_dv": response["destinatary_agency_dv"],
+      "destinatary_number_account": response["destinatary_number_account"],
+      "destinatary_number_account-dv": response["destinatary_number_account-dv"]
+    })
+    navigate("/proof")
+  }
 
   const infos = _obj.obj.statement
   let confirmDate: string;
@@ -41,12 +63,12 @@ export const Extractcomp = (_obj: ExtractProps) => {
         <>
           <br />
           <p>{date}</p>
-          <p id={info.id} className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+          <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
 
         </>
       )
     }
-    return <p id={info.id} className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+    return <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
   })
   return (
     <div className="flex flex-col justify-center items-center h-full">

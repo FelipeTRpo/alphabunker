@@ -7,7 +7,7 @@ import { useUser } from '../../providers/account';
 export const Login = () => {
   const navigate = useNavigate();
 
-  const { setState, state } = useUser();
+  const { setState } = useUser();
 
   const [cpf, setCpf] = useState('');
   const [] = useState('');
