@@ -76,3 +76,20 @@ export async function deposit(agency:string, agency_dv:string, acct_number:strin
         return e
     }
 }
+
+export async function withdraw(agency:string, agency_dv:string, acct_number:string, acct_number_dv:string, value: string) {
+    try {
+        const result = (await api.post("/withdrawals", {
+            agency,
+            agency_dv,
+            acct_number,
+            acct_number_dv,
+            value
+        }))
+        if (result.status !== 200) throw "error in route: withdrawals"
+
+        return result.data
+    } catch (e) {
+        return e
+    }    
+}

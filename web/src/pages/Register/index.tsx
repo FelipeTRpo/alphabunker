@@ -25,6 +25,7 @@ export const Register = () => {
         agency_dv: obj.agency_dv
     }
     )
+    sessionStorage.setItem('cpf_account', cpf);
 }
 
   const handleRegister = async () => {

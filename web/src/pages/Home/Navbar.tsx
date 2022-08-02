@@ -31,7 +31,7 @@ export const Navbar = (props: NavbarProps) => {
             </nav>
             <div className='bg-white rounded-2xl bg-white mx-auto my-0 px-4 py-3 pt-1.5 w-10/12 absolute -bottom-8 left-1/2 -translate-x-1/2 shadow-md flex flex-col items-start justify-between'>
                 <p className='text-header-gold'>Agencia: {state.agency} Conta: {state.acct_number}</p>
-                <p className='flex text-btn-primary-base'> <img src={hideeye} alt="" /> {props.money} R$</p>
+                <p className='flex text-btn-primary-base'> <img src={hideeye} alt="" /> {parseInt(props.money).toFixed(2)} R$</p>
             </div>
         </div >
     )
