@@ -1,6 +1,17 @@
+import { useState } from 'react';
 import depositgold from '../../assets/imgs/depositgold.svg';
+import { deposit } from '../../components/utils/requisitions';
+import { useUser } from '../../providers/account';
 
 export const Transfercomp = () => {
+  const state = useUser().state;
+  const [value, setValue] = useState('');
+  
+  const handleDeposit = async() => {
+    const response = await deposit(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv, value);
+    console.log(response)
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-full">
       <div className=" flex flex-col items-center px-3.5 py-3 mt-6 bg-white rounded-xl h-fit w-3/4 gap-2">
@@ -15,7 +26,8 @@ export const Transfercomp = () => {
             <input
               className="w-full font-medium font-brand p-2 pl-2 rounded-md text-input-text  bg-input-readonly "
               type="text"
-              placeholder="1510-5"
+              placeholder={state.agency + "-" + state.agency_dv}
+              disabled
             />
             <label className="text-xs text-input-inactive">Agência</label>
           </div>
@@ -23,7 +35,8 @@ export const Transfercomp = () => {
             <input
               className="w-full placeholder:font-medium p-2 pl-2  text-input-text  rounded-md bg-input-readonly"
               type="text"
-              placeholder="95785-3"
+              placeholder={state.acct_number + "-" + state.acct_number_dv}
+              disabled
             />
             <label className=" text-input-inactive  text-xs">Conta</label>
           </div>
@@ -32,6 +45,7 @@ export const Transfercomp = () => {
           className=" placeholder:text-input-placeholder text-input-text border border-input-border bg-input-base mt-1 text-base px-2 py-1 rounded w-full"
           type="text"
           placeholder="Valor"
+          onChange={(e) => setValue(e.target.value)}
         />
         <input
           className="placeholder:text-input-placeholder text-input-text border border-input-border bg-input-base text-base px-2 py-1 rounded w-full mt-4"
@@ -39,7 +53,7 @@ export const Transfercomp = () => {
           placeholder="Senha"
         />
 
-        <button className="bg-btn-primary-base font-brand mt-4 hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]">
+        <button className="bg-btn-primary-base font-brand mt-4 hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]" onClick={handleDeposit}>
           Depositar
         </button>
       </div>

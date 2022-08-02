@@ -29,6 +29,12 @@ class StatementSql extends Connection {
         })
         const transfers = (await this.db.query(query)).rows
         transfers.push(...trasfersTo)
+        transfers.sort((e0, e1) => {
+            if(e0.date_time >= e1.date_time){
+                return 1
+            }
+            return -1
+        })
         return { 
             statement: transfers,
             balance: (await this.db.query(queryBalance)).rows[0].balance

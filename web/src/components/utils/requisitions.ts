@@ -59,3 +59,20 @@ export async function createTransfer(agency: string, agency_dv: string, acct_num
         return e
     }
 }
+
+export async function deposit(agency:string, agency_dv:string, acct_number:string, acct_number_dv:string, value: string) {
+    try {
+        const result = (await api.post("/deposit", {
+            agency,
+            agency_dv,
+            acct_number,
+            acct_number_dv,
+            value
+        }))
+        if (result.status !== 200) throw "error in route: deposit"
+
+        return result.data
+    } catch (e) {
+        return e
+    }
+}
