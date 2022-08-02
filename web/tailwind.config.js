@@ -11,6 +11,7 @@ module.exports = {
           base: '#338896',
           hover: '#3FA7B8',
           btn: '#75ACB1',
+          gray: '#A2A2A2',
         },
         body: {
           light: {
