@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import transfergold from '../../assets/imgs/transfergold.svg';
 import { createTransfer } from '../../components/utils/requisitions';
 import { useUser } from '../../providers/account';
+import { Modalconfirmation } from "../../components/Modalconfirmation";
+
 
 const parserAcctAndAgency = (str: string): Map<string, string> => {
     const map = new Map
@@ -17,7 +19,16 @@ export const Transactioncomp = () => {
     const [value, setValue] = useState('');
     const [acct, setAcct] = useState('');
     const [agency, setAgency] = useState('');
-
+    useEffect( () => {document.body.addEventListener('click', openModal)} , [])
+    function openModal(ev:MouseEvent){
+      const parser = ev.target as any
+      console.log(parser?.dataset.openmodal)
+      if(!parser.dataset.openmodal){
+          return
+      }
+      document.getElementById('confirmation-modal')?.classList.remove('hidden');
+      document.getElementById('confirmation-modal')?.classList.add('flex');
+    }
     const handleTranfer = async () => {
         const _agency = parserAcctAndAgency(agency);
         const _acct = parserAcctAndAgency(acct);
@@ -32,7 +43,7 @@ export const Transactioncomp = () => {
         console.log(result)
     }
 
-    return (
+    return (<>
         <div className="flex flex-col justify-center items-center h-full ">
           <div className=" flex flex-col items-center px-3.5 py-3 bg-white p rounded-xl mt-6 h-fit w-3/4 gap-2">
             <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3">
@@ -95,10 +106,12 @@ export const Transactioncomp = () => {
               placeholder="Senha"
             />
     
-            <button className="bg-btn-primary-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]" onClick={handleTranfer}>
+            <button className="bg-btn-primary-base font-brand hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]" data-openmodal='true'>
               Transferir
             </button>
           </div>
         </div>
+        <Modalconfirmation callback={handleTranfer}/>
+        </>
       );
 }

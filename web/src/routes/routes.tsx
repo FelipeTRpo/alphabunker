@@ -87,9 +87,9 @@ export const Router = () => (
     <Route
       path="/transaction"
       element={
-        // <Private>
-        <Transaction />
-        // </Private>
+        <Private>
+          <Transaction />
+        </Private>
       }
     />
     <Route

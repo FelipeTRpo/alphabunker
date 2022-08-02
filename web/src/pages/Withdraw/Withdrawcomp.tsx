@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import withdrawgold from '../../assets/imgs/withdrawgold.svg';
 import { withdraw } from '../../components/utils/requisitions';
 import { useUser } from '../../providers/account';
+import { Modalconfirmation } from "../../components/Modalconfirmation";
 
 export const Withdrawcomp = () => {
   const state = useUser().state;
   const [value, setValue] = useState('');
-  
+  useEffect( () => {document.body.addEventListener('click', openModal)} , [])
   const handleWithdraw = async() => {
     const response = await withdraw(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv, value);
     console.log(response)
   }
-  return (
+  
+  function openModal(ev:MouseEvent){
+    const parser = ev.target as any
+    console.log(parser?.dataset.openmodal)
+    if(!parser.dataset.openmodal){
+        return
+    }
+    document.getElementById('confirmation-modal')?.classList.remove('hidden');
+    document.getElementById('confirmation-modal')?.classList.add('flex');
+  }
+  return (<>
     <div className="flex flex-col justify-center items-center h-full">
       <div className=" flex flex-col items-center px-3.5 py-3 mt-6 bg-white rounded-xl h-fit w-3/4 gap-2">
         <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start">
@@ -52,10 +63,12 @@ export const Withdrawcomp = () => {
           placeholder="Senha"
         />
 
-        <button className="bg-btn-primary-base font-brand mt-4 hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]" onClick={handleWithdraw}>
+        <button className="bg-btn-primary-base font-brand mt-4 hover:bg-btn-primary-hover text-btn-text rounded-md w-[250px] h-[40px]" data-openmodal='true' >
           Sacar
         </button>
       </div>
     </div>
+    <Modalconfirmation callback={handleWithdraw}/>
+    </>
   );
 };
