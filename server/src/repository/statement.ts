@@ -12,12 +12,21 @@ class StatementSql extends Connection {
         return await this.query();
     }
 
-    private async query(): Promise<object>{
+    public async getById(idTransaction:string): Promise<object> {
         const query = `
-        SELECT date_time, value, rate, total, type.name, coalesce(accounts.agency, '') AS "destinatary_agency", coalesce(accounts.agency_dv, '') AS "destinatary_agency_dv", coalesce(accounts.acct_number, '') AS "destinatary_number_account", coalesce(acct_number_dv, '') AS "destinatary_number_account-dv"  FROM transactions
+        SELECT transactions.id, date_time, value, rate, total, type.name, coalesce(accounts.agency, '') AS "destinatary_agency", coalesce(accounts.agency_dv, '') AS "destinatary_agency_dv", coalesce(accounts.acct_number, '') AS "destinatary_number_account", coalesce(acct_number_dv, '') AS "destinatary_number_account-dv"  FROM transactions
+        INNER JOIN types_transactions AS type ON type.id=fgk_type LEFT JOIN accounts ON transactions.fgk_account_to = accounts.id WHERE transactions.id='${idTransaction}'
+        `
+        return (await this.db.query(query)).rows[0]
+    }
+
+    private async query(): Promise<object>{
+        console.log(this.account.id)
+        const query = `
+        SELECT transactions.id, date_time, value, rate, total, type.name, coalesce(accounts.agency, '') AS "destinatary_agency", coalesce(accounts.agency_dv, '') AS "destinatary_agency_dv", coalesce(accounts.acct_number, '') AS "destinatary_number_account", coalesce(acct_number_dv, '') AS "destinatary_number_account-dv"  FROM transactions
         INNER JOIN types_transactions AS type ON type.id=fgk_type LEFT JOIN accounts ON transactions.fgk_account_to = accounts.id WHERE fgk_account_from='${this.account.id}'
         `
-        const queryTransferTo = `SELECT date_time, value, rate, total, type.name, coalesce(accounts.agency, '') AS "destinatary_agency", coalesce(accounts.agency_dv, '') AS "destinatary_agency_dv", coalesce(accounts.acct_number, '') AS "destinatary_number_account", coalesce(acct_number_dv, '') AS "destinatary_number_account-dv"  FROM transactions
+        const queryTransferTo = `SELECT transactions.id, date_time, value, rate, total, type.name, coalesce(accounts.agency, '') AS "destinatary_agency", coalesce(accounts.agency_dv, '') AS "destinatary_agency_dv", coalesce(accounts.acct_number, '') AS "destinatary_number_account", coalesce(acct_number_dv, '') AS "destinatary_number_account-dv"  FROM transactions
         INNER JOIN types_transactions AS type ON type.id=fgk_type LEFT JOIN accounts ON transactions.fgk_account_to = accounts.id WHERE fgk_account_to='${this.account.id}'`
         const queryBalance = `
         SELECT balance FROM accounts WHERE id='${this.account.id}'

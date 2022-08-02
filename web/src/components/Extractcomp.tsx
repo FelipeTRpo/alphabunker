@@ -41,12 +41,12 @@ export const Extractcomp = (_obj: ExtractProps) => {
         <>
           <br />
           <p>{date}</p>
-          <p className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+          <p id={info.id} className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
 
         </>
       )
     }
-    return <p className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+    return <p id={info.id} className={classExtractUnit}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
   })
   return (
     <div className="flex flex-col justify-center items-center h-full">

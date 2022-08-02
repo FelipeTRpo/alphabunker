@@ -5,6 +5,7 @@ import Transfer from "../controller/transfer";
 import Withdrawals from "../controller/withdrawals";
 import Statement from "../controller/statement";
 import GetAccount from "../controller/account-with-cpf";
+import StatementById from "../controller/statementBy";
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router.post("/transfer", new Transfer().handle.bind(new Transfer()));
 router.post("/statement", new Statement().handle.bind(new Statement()));
 
 router.get("/get-fields/:cpf", new GetAccount().handle.bind(new GetAccount()));
+
+router.get("/get-statement/:id", new StatementById().handle.bind(new StatementById()));
 
 export default router

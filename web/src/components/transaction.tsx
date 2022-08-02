@@ -1,4 +1,4 @@
-import header from '../../assets/imgs/header.svg';
+import header from '../assets/imgs/header.svg';
 
 export const ProofOfPurchase = () => {
   return (
