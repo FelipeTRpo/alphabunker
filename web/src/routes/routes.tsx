@@ -25,6 +25,7 @@ const Private = ({ children }: PrivateTypes) => {
       const setNewAccount = (obj: any) => {
         setState({
           name: obj.name,
+          idUser: obj.idUser,
           id: obj.id,
           acct_number: obj.acct_number,
           acct_number_dv: obj.acct_number_dv,
@@ -120,9 +121,9 @@ export const Router = () => (
     <Route
       path="/profile"
       element={
-        // <Private>
+        <Private>
           <Profile />
-        //</Private>
+        </Private>
       }
     />
   </Routes>

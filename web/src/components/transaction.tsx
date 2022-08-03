@@ -25,7 +25,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Tipo: Transferência - Enviada
               </h2>
               <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
-                Data: {props.datetime}
+                Data: {new Date(props.datetime).toLocaleDateString("pt-br")}
               </span>
             </div>
             <div>
@@ -72,7 +72,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Tipo: Saque
               </h2>
               <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
-                Data: {props.datetime}
+                Data: {new Date(props.datetime).toLocaleDateString("pt-br")}
               </span>
             </div>
 
@@ -103,7 +103,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Tipo: Depósito
               </h2>
               <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
-                Data: {props.datetime}
+                Data: {new Date(props.datetime).toLocaleDateString("pt-br")}
               </span>
             </div>
 
@@ -134,7 +134,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Tipo: Transferência - Recebida
               </h2>
               <span className=" text-[#A2A2A2] font-brand  mt-2 text-sm ml-1">
-                Data: {props.datetime}
+                Data: {new Date(props.datetime).toLocaleDateString("pt-br")}
               </span>
             </div>
             <div>

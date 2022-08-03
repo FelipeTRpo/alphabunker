@@ -18,6 +18,7 @@ export const Register = () => {
   const setNewAccount = (obj: any) => {
     setState({
         name: name,
+        idUser: obj.idUser,
         id: obj.id,
         acct_number: obj.acct_number,
         acct_number_dv: obj.acct_number_dv,
