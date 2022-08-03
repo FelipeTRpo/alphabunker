@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import closex from '../assets/imgs/closex.svg';
 export const handleModal = (ev:MouseEvent) => {
     const parser = ev.target as any
-    console.log(parser?.dataset.close)
     if(!parser.dataset.close){
         return
     }

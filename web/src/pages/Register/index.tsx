@@ -38,7 +38,6 @@ export const Register = () => {
     if (hasError.length !== 0) return alert(...hasError);
     const response = await createAccount(cpf, email, birth_date, name);
     if (response.name === 'AxiosError') return;
-    console.log(response);
     setNewAccount(response);
     navigate('/home');
   };

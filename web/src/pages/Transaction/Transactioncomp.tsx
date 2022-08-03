@@ -22,7 +22,6 @@ export const Transactioncomp = () => {
     useEffect( () => {document.body.addEventListener('click', openModal)} , [])
     function openModal(ev:MouseEvent){
       const parser = ev.target as any
-      console.log(parser?.dataset.openmodal)
       if(!parser.dataset.openmodal){
           return
       }
@@ -40,7 +39,6 @@ export const Transactioncomp = () => {
             value,
             state.id
         )
-        console.log(result)
     }
 
     return (<>

@@ -94,9 +94,9 @@ export async function withdraw(agency:string, agency_dv:string, acct_number:stri
     }    
 }
 
-export async function getStatementByID(id: string) {
+export async function getStatementByID(id: string, idOwner:string) {
     try {
-        const result = (await api.get(`/get-statement/${id}`))
+        const result = (await api.get(`/get-statement/${id}/${idOwner}`))
         if (result.status !== 200) throw "error in route: statement by id"
 
         return result.data

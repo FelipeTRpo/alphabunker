@@ -11,7 +11,6 @@ class GetAccount {
             res.send(response.data);
         }
         catch(err){
-            console.log(err)
             const _resError: resError = err as resError;
             if(_resError.code && _resError.code) res.status(_resError.code).send(_resError);
             else res.status(500).send("ERROR IN API");

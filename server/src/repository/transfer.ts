@@ -22,8 +22,8 @@ class TransferSql extends Connection {
     }
 
     private async updateBalance() {
-        const queryTo = `UPDATE accounts SET balance = balance+${this.data.value} WHERE id='${this.data.fgk_account_from}'`
-        const queryFrom = `UPDATE accounts SET balance = balance-${this.data.total} WHERE id='${this.data.fgk_account_to}'`
+        const queryTo = `UPDATE accounts SET balance = balance+${this.data.value} WHERE id='${this.data.fgk_account_to}'`
+        const queryFrom = `UPDATE accounts SET balance = balance-${this.data.total} WHERE id='${this.data.fgk_account_from}'`
         await this.db.query(queryTo)
         await this.db.query(queryFrom)
     }

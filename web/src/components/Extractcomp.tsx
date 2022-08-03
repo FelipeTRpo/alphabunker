@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bellicon from '../assets/imgs/bellicon.svg';
 import extractgold from '../assets/imgs/extractgold.svg';
+import { useUser } from '../providers/account';
 import { useTransaction } from '../providers/transaction';
 import { getStatementByID } from './utils/requisitions';
 
@@ -12,38 +13,40 @@ type ExtractProps = {
 }
 
 const whichColor = (name: string):string => {
-  if(name === "DEPOSIT" || name === "TRANSFER"){
+  if(name === "DEPOSIT" || name === "TRANSFER_TO"){
     return 'text-[#53D496]'
   }
   return "text-[#FF5959]"
 }
 
 const parserValue = (name:string, value:string) => {
-  if(name === "DEPOSIT" || name === "TRANSFER"){
+  if(name === "DEPOSIT" || name === "TRANSFER_TO"){
     return `+$${value}`
   }
   return `-$${value}`
 }
 
 const nameTransaction: any = {
-  "TRANSFER": "Transferência recebida",
-  "TRANSFER_TO": "Transferência enviada",
+  "TRANSFER": "Transferência enviada",
+  "TRANSFER_TO": "Transferência recebida",
   "DEPOSIT": "Depósito",
   "WITHDRAWALS": "Saque"
 }
 
 
 export const Extractcomp = (_obj: ExtractProps) => {
+  const state = useUser().state
   const navigate = useNavigate();
   const setState = useTransaction().setState;
   const get_details = async(id: string) => {
-    const response = await getStatementByID(id);
+    const response = await getStatementByID(id, state.id);
     setState({
       "id": response.id,
       "date_time": response.date_time,
       "value": response.value,
       "total": response.total,
       "name": response.name,
+      "destinatary_name": response["destinatary_name"],
       "destinatary_agency": response["destinatary_agency"],
       "destinatary_agency_dv": response["destinatary_agency_dv"],
       "destinatary_number_account": response["destinatary_number_account"],

@@ -21,6 +21,6 @@ router.post("/statement", new Statement().handle.bind(new Statement()));
 
 router.get("/get-fields/:cpf", new GetAccount().handle.bind(new GetAccount()));
 
-router.get("/get-statement/:id", new StatementById().handle.bind(new StatementById()));
+router.get("/get-statement/:id/:idOwner", new StatementById().handle.bind(new StatementById()));
 
 export default router

@@ -37,8 +37,8 @@ class TransferService extends TransactionService {
         if(!await accountSql.balanceSufficient(value+1, this.data.id)) throw "Insufficient balance"
 
         this.transaction = {
-            "fgk_account_from": idAccount,
-            "fgk_account_to": this.data.id,
+            "fgk_account_from": this.data.id,
+            "fgk_account_to": idAccount,
             "fgk_type": 3,
             "value": value,
             "rate": 1,

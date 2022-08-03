@@ -7,7 +7,7 @@ class StatementById {
 
     public async handle(req: Request, res: Response) {
         try{
-            const response = await new StatementByIdService(req.params.id).create()
+            const response = await new StatementByIdService(req.params.idOwner, req.params.id).create()
             res.status(res.statusCode);
             res.send(response.data);
         }

@@ -10,12 +10,10 @@ export const Withdrawcomp = () => {
   useEffect( () => {document.body.addEventListener('click', openModal)} , [])
   const handleWithdraw = async() => {
     const response = await withdraw(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv, value);
-    console.log(response)
   }
   
   function openModal(ev:MouseEvent){
     const parser = ev.target as any
-    console.log(parser?.dataset.openmodal)
     if(!parser.dataset.openmodal){
         return
     }

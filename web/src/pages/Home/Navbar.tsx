@@ -16,7 +16,6 @@ type NavbarProps = {
 export const Navbar = (props: NavbarProps) => {
     const state = useUser().state
     const navigate = useNavigate();
-    console.log(state)
     return (
         <div className='flex flex-col gap-4 bg-brand-base p-12 rounded-b-3xl relative'>
             

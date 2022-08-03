@@ -18,7 +18,6 @@ interface PrivateTypes {
 
 const Private = ({ children }: PrivateTypes) => {
   const { state, setState } = useUser();
-  console.log(state);
 
   if (state.id === '') {
     const cpf = sessionStorage.getItem('cpf_account');
@@ -121,9 +120,9 @@ export const Router = () => (
     <Route
       path="/profile"
       element={
-        <Private>
+        // <Private>
           <Profile />
-        </Private>
+        //</Private>
       }
     />
   </Routes>
