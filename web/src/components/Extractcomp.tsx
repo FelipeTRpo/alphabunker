@@ -6,7 +6,7 @@ import { useUser } from '../providers/account';
 import { useTransaction } from '../providers/transaction';
 import { getStatementByID } from './utils/requisitions';
 
-const classExtractUnit = 'flex justify-between';
+const classExtractUnit = 'flex justify-between w-full gap-2';
 
 type ExtractProps = {
   obj: any
@@ -65,19 +65,19 @@ export const Extractcomp = (_obj: ExtractProps) => {
       return (
         <>
           <br />
-          <p>{date}</p>
-          <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+          <p className='self-start'>{date}</p>
+          <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive text-sm'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name) + " text-sm"}>{parserValue(info.name, info.value)}</span></p>
 
         </>
       )
     }
-    return <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name)}>{parserValue(info.name, info.value)}</span></p>
+    return <p id={info.id} className={classExtractUnit} onClick={(e) => {get_details(e.currentTarget.id)}}><span className='text-input-inactive text-sm'>{nameTransaction[info.name]}</span> <span className={whichColor(info.name) + " text-sm"}>{parserValue(info.name, info.value)}</span></p>
   })
   return (
     <div className="flex flex-col justify-center items-center h-full">
-        <div className=' flex flex-col items-center bg-white rounded-xl h-3/4 w-3/4 gap-2'>
+        <div className=' flex flex-col items-center bg-white rounded-xl h-fit w-5/6 gap-2 py-3 px-2'>
           <h1 className="text-xl font-medium font-brand text-header-gold flex flex justify-start gap-2 self-start pl-3"><img className='' src={extractgold} alt="" /> Extrato de transações<img className='' src={bellicon} alt="" /></h1>
-          <div className='bg-body-light-100 h-4/5 w-4/5 text-input-placeholder'>
+          <div className='flex flex-col items-center justify-around py-3 px-3.5 bg-body-light-100 h-fit w-4/5 text-input-placeholder'>
             {elements}
           </div>
         
