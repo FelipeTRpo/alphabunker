@@ -30,6 +30,7 @@ class AccountSql extends Connection {
         if(resultClient === undefined) throw "CPF inexists";
         const result = (await this.db.query(`SELECT "id", "owner", "agency", "agency_dv", "acct_number", "acct_number_dv" FROM accounts WHERE owner='${resultClient.id}'`)).rows[0]
         result.name = resultClient.name
+        result.idUser = resultClient.id
         return result;
     }
 

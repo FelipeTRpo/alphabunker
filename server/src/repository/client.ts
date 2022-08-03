@@ -8,6 +8,12 @@ class ClientSql extends Connection {
         this.data = data;
     }
 
+    public async getById(id: string): Promise<Object> {
+        console.log(`SELECT name, cpf, birth_date, email FROM clients WHERE id='${id}'`)
+        const response = (await this.db.query(`SELECT name, cpf, birth_date, email FROM clients WHERE id='${id}'`)).rows[0]
+        return response
+    }
+
     public async exists(): Promise<string> {
         const id = await this.clientExists();
         //Force return string
