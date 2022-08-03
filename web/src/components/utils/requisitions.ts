@@ -6,7 +6,7 @@ export async function login(cpf: string) {
         if (result.status !== 200) throw "in route: account"
         return result.data
     } catch (e) {
-        return e
+        console.log(e)
     }
 }
 
@@ -22,7 +22,7 @@ export async function createAccount(cpf: string, email: string, birth_date: stri
 
         return result.data
     } catch (e) {
-        return e
+        console.log(e)
     }
 }
 
@@ -38,7 +38,7 @@ export async function getStatement(agency: string, agency_dv: string, acct_numbe
 
         return result.data
     } catch (e) {
-        return e
+        console.log(e)
     }
 }
 
@@ -56,7 +56,7 @@ export async function createTransfer(agency: string, agency_dv: string, acct_num
 
         return result.data
     } catch (e) {
-        return e
+        console.log(e)
     }
 }
 
@@ -73,7 +73,7 @@ export async function deposit(agency:string, agency_dv:string, acct_number:strin
 
         return result.data
     } catch (e) {
-        return e
+        console.log(e)
     }
 }
 
