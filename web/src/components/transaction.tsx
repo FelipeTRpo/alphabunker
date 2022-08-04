@@ -50,7 +50,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Valor
               </span>
               <span className="text-base font-medium font-brand  text-input-error">
-                {props.value}
+                {`R$ -${props.value}`}
               </span>
             </div>
           </div>
@@ -81,7 +81,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Valor
               </span>
               <span className="text-base font-medium font-brand  text-input-error">
-                {props.value}
+              {`R$ -${props.value}`}
               </span>
             </div>
           </div>
@@ -112,7 +112,7 @@ export const ProofOfPurchase = (props: ProofProps) => {
                 Valor
               </span>
               <span className="text-base font-medium font-brand  text-[#53D496]">
-                {props.value}
+              {`R$ +${props.value}`}
               </span>
             </div>
           </div>
@@ -158,8 +158,8 @@ export const ProofOfPurchase = (props: ProofProps) => {
               <span className="text-base font-medium font-brand  text-input-placeholder">
                 Valor
               </span>
-              <span className="text-base font-medium font-brand  text-input-error">
-                {props.value}
+              <span className="text-base font-medium font-brand  text-[#53D496]">
+              {`R$ +${props.value}`}
               </span>
             </div>
           </div>

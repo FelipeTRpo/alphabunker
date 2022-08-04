@@ -76,7 +76,7 @@ export const Extractcomp = (_obj: ExtractProps) => {
   return (
     <div className="flex flex-col justify-center items-center h-full">
         <div className=' flex flex-col items-center bg-white rounded-xl h-fit w-5/6 gap-2 py-3 px-2'>
-          <h1 className="text-xl font-medium font-brand text-header-gold flex flex justify-start gap-2 self-start pl-3"><img className='' src={extractgold} alt="" /> Extrato de transações<img className='' src={bellicon} alt="" /></h1>
+          <h1 className="text-xl font-medium font-brand text-header-gold flex justify-start gap-2 self-start pl-3"><img className='' src={extractgold} alt="" /> Extrato de transações<img className='' src={bellicon} alt="" /></h1>
           <div className='flex flex-col items-center justify-around py-3 px-3.5 bg-body-light-100 h-fit w-4/5 text-input-placeholder'>
             {elements}
           </div>

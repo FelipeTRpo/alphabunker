@@ -56,7 +56,8 @@ export const Transactioncomp = () => {
                 <input
                   className="w-full font-medium font-brand p-2 pl-2 rounded-md text-input-text  bg-input-readonly "
                   type="text"
-                  placeholder="1510-5"
+                  placeholder={state.agency + "-" + state.agency_dv}
+                  disabled
                 />
                 <label className="text-xs text-input-inactive">Agência</label>
               </div>
@@ -64,7 +65,8 @@ export const Transactioncomp = () => {
                 <input
                   className="w-full placeholder:font-medium p-2 pl-2  text-input-text  rounded-md bg-input-readonly"
                   type="text"
-                  placeholder="95785-3"
+                  placeholder={state.acct_number + "-" + state.acct_number_dv}
+                  disabled
                 />
                 <label className=" text-input-inactive  text-xs">Conta</label>
               </div>
@@ -77,7 +79,7 @@ export const Transactioncomp = () => {
                 <input
                   className="placeholder:font-medium p-2 pl-2 text-input-text  rounded-md bg-input-base border border-input-border placeholder:text-input-placeholder w-full"
                   type="text"
-                  placeholder="1510-5"
+                  placeholder="0000-0"
                   onChange={(e) => setAgency(e.target.value)}
                 />
                 <label className="  text-input-inactive text-xs">Agência</label>
@@ -86,7 +88,7 @@ export const Transactioncomp = () => {
                 <input
                   className="placeholder:font-medium placeholder:text-input-placeholder text-input-text  p-2 pl-2 rounded-md bg-input-base border border-input-border w-full"
                   type="text"
-                  placeholder="95785-3"
+                  placeholder="00000-0"
                   onChange={(e) => setAcct(e.target.value)}
                 />
                 <label className=" text-input-inactive text-xs">Conta</label>
