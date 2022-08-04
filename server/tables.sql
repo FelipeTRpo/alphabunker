@@ -30,7 +30,7 @@ CREATE TABLE "transactions" (
 	"id" uuid NOT NULL DEFAULT uuid_generate_v4(),
 	"date_time" TIMESTAMP NOT NULL DEFAULT (current_timestamp at time zone 'UTC'),
 	"value" numeric NOT NULL,
-	"rate" integer NOT NULL,
+	"rate" numeric NOT NULL,
 	"total" numeric NOT NULL, 
 	"fgk_type" integer NOT NULL REFERENCES "types_transactions"("id"),
 	"fgk_account_from" uuid NOT NULL REFERENCES "accounts"("id"),
