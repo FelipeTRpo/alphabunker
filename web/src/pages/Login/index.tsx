@@ -61,7 +61,7 @@ export const Login = () => {
           Entrar
         </button>
         <p
-          className="text-sm font-brand text-paragraph-dark"
+          className="text-sm font-brand text-paragraph-dark cursor-pointer "
           onClick={() => navigate('/register', { replace: true })}
         >
           Crie sua conta

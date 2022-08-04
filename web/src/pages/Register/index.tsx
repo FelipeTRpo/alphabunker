@@ -81,12 +81,12 @@ export const Register = () => {
         />
         <input
           className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
-          type="text"
+          type="password"
           placeholder="Digite sua senha"
         />
         <input
           className="w-[250px] h-[33px] rounded-md text-paragraph-dark"
-          type="text"
+          type="password"
           placeholder="Confirme sua senha"
         />
       </div>
