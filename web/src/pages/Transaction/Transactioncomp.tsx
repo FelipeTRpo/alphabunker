@@ -3,6 +3,7 @@ import transfergold from '../../assets/imgs/transfergold.svg';
 import { createTransfer } from '../../components/utils/requisitions';
 import { useUser } from '../../providers/account';
 import { Modalconfirmation } from "../../components/Modalconfirmation";
+import { useNavigate } from 'react-router-dom';
 
 
 const parserAcctAndAgency = (str: string): Map<string, string> => {
@@ -15,6 +16,8 @@ const parserAcctAndAgency = (str: string): Map<string, string> => {
 }
 
 export const Transactioncomp = () => {
+  const navigate = useNavigate()
+
     const state = useUser().state;
     const [value, setValue] = useState('');
     const [acct, setAcct] = useState('');
@@ -39,6 +42,7 @@ export const Transactioncomp = () => {
             value,
             state.id
         )
+        navigate('/home')
     }
 
     return (<>

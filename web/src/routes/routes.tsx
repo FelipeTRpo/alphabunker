@@ -19,7 +19,7 @@ interface PrivateTypes {
 const Private = ({ children }: PrivateTypes) => {
   const { state, setState } = useUser();
 
-  if (state.id === '') {
+  if (!state.idUser) {
     const cpf = sessionStorage.getItem('cpf_account');
     if (cpf != undefined) {
       const setNewAccount = (obj: any) => {
@@ -43,17 +43,18 @@ const Private = ({ children }: PrivateTypes) => {
       };
       handlerLogin();
     }
-
+    if(state.idUser) return children;
     return <Navigate to="/login" />;
+  }else {
+    return children;
   }
 
-  return children;
 };
 
 const Public = ({ children }: PrivateTypes) => {
   const state = useUser().state;
 
-  if (state.id != '') {
+  if (state.idUser) {
     return <Navigate to="/home" />;
   }
   return children;

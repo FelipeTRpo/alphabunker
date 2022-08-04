@@ -3,13 +3,17 @@ import withdrawgold from '../../assets/imgs/withdrawgold.svg';
 import { withdraw } from '../../components/utils/requisitions';
 import { useUser } from '../../providers/account';
 import { Modalconfirmation } from "../../components/Modalconfirmation";
+import { useNavigate } from 'react-router-dom';
 
 export const Withdrawcomp = () => {
+  const navigate = useNavigate();
+
   const state = useUser().state;
   const [value, setValue] = useState('');
   useEffect( () => {document.body.addEventListener('click', openModal)} , [])
   const handleWithdraw = async() => {
     const response = await withdraw(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv, value);
+    navigate('/home');
   }
   
   function openModal(ev:MouseEvent){

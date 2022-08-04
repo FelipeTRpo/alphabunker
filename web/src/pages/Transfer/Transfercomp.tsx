@@ -3,13 +3,17 @@ import depositgold from '../../assets/imgs/depositgold.svg';
 import { deposit } from '../../components/utils/requisitions';
 import { useUser } from '../../providers/account';
 import { Modalconfirmation } from "../../components/Modalconfirmation";
+import { useNavigate } from 'react-router-dom';
 
 export const Transfercomp = () => {
+  const navigate = useNavigate();
+  
   const state = useUser().state;
   const [value, setValue] = useState('');
   useEffect( () => {document.body.addEventListener('click', openModal)} , [])
   const handleDeposit = async() => {
     const response = await deposit(state.agency, state.agency_dv, state.acct_number, state.acct_number_dv, value);
+    navigate('/home')
   }
 
 
